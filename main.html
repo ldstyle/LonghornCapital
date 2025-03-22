@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longhorn Capital Partners | Acquiring and Growing Businesses in Texas</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        :root {
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --card-hover: #2a2a2a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --accent: #c5884d;
+            --accent-hover: #d69c61;
+            --border: #333333;
+        }
+        
+        body {
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            width: 100%;
+            background-color: var(--darker-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a.cta-button {
+            background-color: var(--accent);
+            color: var(--dark-bg);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        .nav-links a.cta-button:hover {
+            background-color: var(--accent-hover);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 100px;
+            background: linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+            text-align: center;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark-bg);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-right: 15px;
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent-hover);
+        }
+        
+        .secondary-button {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--text-primary);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            border: 1px solid var(--accent);
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(197, 136, 77, 0.1);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: var(--darker-bg);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        /* Value Proposition */
+        .value-prop {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Differentiators Section */
+        .differentiators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .differentiator-card {
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .differentiator-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            background-color: var(--card-hover);
+        }
+        
+        .differentiator-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        /* Case Studies */
+        .case-studies {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .case-study {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border);
+        }
+        
+        .case-study:hover {
+            transform: translateY(-10px);
+        }
+        
+        .case-study-image {
+            height: 200px;
+            background-color: #333;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .case-study-content {
+            padding: 25px;
+        }
+        
+        .case-study-metrics {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .metric {
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Investment Philosophy */
+        .philosophy-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .philosophy-item {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 3px solid var(--accent);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+        }
+        
+        .philosophy-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+        }
+        
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .cta-card {
+            background-color: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border);
+        }
+        
+        .cta-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .cta-card h3 {
+            margin-bottom: 15px;
+        }
+        
+        .cta-card p {
+            margin-bottom: 25px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            color: var(--text-secondary);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .case-studies, .differentiators-grid, .philosophy-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">LONGHORN CAPITAL</a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#business">Business Acquisitions</a></li>
+                    <li><a href="#realestate">Real Estate</a></li>
+                    <li><a href="#investors">Investors</a></li>
+                    <li><a href="#contact" class="cta-button">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Acquiring and Growing Stable Businesses<br>and Real Estate in Texas</h1>
+            <p class="subtitle">Longhorn Capital Partners specializes in creative financing solutions for business owners and real estate sellers</p>
+            <a href="#about" class="cta-button">Explore Our Approach</a>
+            <a href="#contact" class="secondary-button">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section id="about">
+        <div class="container">
+            <div class="value-prop">
+                <h2>Our Approach</h2>
+                <p>At Longhorn Capital Partners, we acquire established, profitable businesses and commercial real estate using innovative financing strategies that benefit both sellers and investors. Our approach focuses on preserving business legacies while creating long-term value through operational excellence and strategic growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiators Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Key Differentiators</h2>
+                <p class="subtitle">What sets us apart in the investment landscape</p>
+            </div>
+            <div class="differentiators-grid">
+                <div class="differentiator-card">
+                    <div class="differentiator-icon">💼</div>
+                    <h3>Expertise in Seller Financing</h3>
+                    <p>We structure deals that provide business owners with tax-efficient exits and ongoing income streams.</p>
+                </div>
+                <div class="differentiator-card">
+                    <div class="differentiator-icon">🏢</div>
+                    <h3>Creative Real Estate Solutions</h3>
+                    <p>Our innovative financing approaches unlock value in commercial properties where traditional methods fall short.</p>
+                </div>
+                <div class="differentiator-card">
+                    <div class="differentiator-icon">📈</div>
+                    <h3>Operational Excellence</h3>
+                    <p>Our team brings decades of experience in optimizing and growing established businesses.</p>
+                </div>
+                <div class="differentiator-card">
+                    <div class="differentiator-icon">🌵</div>
+                    <h3>Texas-Focused</h3>
+                    <p>Deep understanding of local markets and strong relationships throughout the Lone Star State.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section id="business">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Case Studies</h2>
+                <p class="subtitle">Examples of our successful acquisitions and value creation</p>
+            </div>
+            <div class="case-studies">
+                <div class="case-study">
+                    <div class="case-study-image" style="background-image: url('https://images.unsplash.com/photo-1577415124269-fc1140a69e91?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                    <div class="case-study-content">
+                        <h3>Texas HVAC Services</h3>
+                        <p>Acquired a 15-year-old HVAC company with strong local presence. Implemented new service offerings and optimized operations.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <div class="metric-value">32%</div>
+                                <div class="metric-label">Revenue Growth</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">45%</div>
+                                <div class="metric-label">EBITDA Increase</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">100%</div>
+                                <div class="metric-label">Staff Retention</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-study">
+                    <div class="case-study-image" style="background-image: url('https://images.unsplash.com/photo-1556156653-e5a7676c4f34?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                    <div class="case-study-content">
+                        <h3>Austin Office Complex</h3>
+                        <p>Acquired an underperforming office building using creative seller financing. Renovated common areas and implemented tenant improvements.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <div class="metric-value">95%</div>
+                                <div class="metric-label">Occupancy Rate</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">28%</div>
+                                <div class="metric-label">NOI Increase</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">2.1x</div>
+                                <div class="metric-label">Equity Multiple</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-study">
+                    <div class="case-study-image" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                    <div class="case-study-content">
+                        <h3>Texas Distribution Company</h3>
+                        <p>Acquired a family-owned distribution business. Expanded product lines and implemented new inventory management systems.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <div class="metric-value">40%</div>
+                                <div class="metric-label">Revenue Growth</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">22%</div>
+                                <div class="metric-label">Margin Improvement</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">3</div>
+                                <div class="metric-label">New Locations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Philosophy -->
+    <section id="realestate">
+        <div class="container">
+            <div class="section-header">
+                <h2>Investment Philosophy</h2>
+                <p class="subtitle">We believe in the enduring value of well-run "boring" businesses that provide essential products and services</p>
+            </div>
+            <div class="philosophy-items">
+                <div class="philosophy-item">
+                    <h3>Preservation of Legacy</h3>
+                    <p>We honor and maintain the company culture and legacy that made the business successful in the first place.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h3>Sustainable Growth</h3>
+                    <p>We focus on operational improvements and strategic initiatives that drive sustainable, long-term growth.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h3>Disciplined Capital Allocation</h3>
+                    <p>We make thoughtful investment decisions that maximize returns while managing risk appropriately.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h3>Long-Term Perspective</h3>
+                    <p>We're not driven by arbitrary investment horizons or exit timelines, allowing us to make decisions that create lasting value.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h3>Community Engagement</h3>
+                    <p>We actively engage with and contribute to the communities where our businesses operate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="investors">
+        <div class="container">
+            <h2>Ready to Partner With Us?</h2>
+            <p class="subtitle">Whether you're a business owner planning your exit, a property owner exploring options, or an investor seeking opportunities, we're here to help.</p>
+            <div class="cta-grid">
+                <div class="cta-card">
+                    <h3>For Business Owners</h3>
+                    <p>Planning your exit? Let's discuss how our creative financing solutions can maximize your after-tax proceeds while preserving your legacy.</p>
+                    <a href="#contact" class="cta-button">Let's Talk</a>
+                </div>
+                <div class="cta-card">
+                    <h3>For Real Estate Owners</h3>
+                    <p>Discover how our innovative approaches to real estate acquisition can provide you with ongoing income and tax advantages.</p>
+                    <a href="#contact" class="cta-button">Explore Options</a>
+                </div>
+                <div class="cta-card">
+                    <h3>For Investors</h3>
+                    <p>Learn about our investment vehicles and how our unique approach generates attractive risk-adjusted returns.</p>
+                    <a href="#contact" class="cta-button">Investment Opportunities</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p class="subtitle">Reach out to discuss how we can work together</p>
+            </div>
+            <div style="max-width: 600px; margin: 0 auto; background-color: var(--card-bg); padding: 40px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); border: 1px solid var(--border);">
+                <form>
+                    <div style="margin-bottom: 20px;">
+                        <label for="name" style="display: block; margin-bottom: 8px; color: var(--text-primary);">Name</label>
+                        <input type="text" id="name" style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid var(--border); background-color: var(--dark-bg); color: var(--text-primary);">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="email" style="display: block; margin-bottom: 8px; color: var(--text-primary);">Email</label>
+                        <input type="email" id="email" style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid var(--border); background-color: var(--dark-bg); color: var(--text-primary);">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="interest" style="display: block; margin-bottom: 8px; color: var(--text-primary);">I'm interested in:</label>
+                        <select id="interest" style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid var(--border); background-color: var(--dark-bg); color: var(--text-primary);">
+                            <option value="business">Selling my business</option>
+                            <option value="realestate">Selling real estate</option>
+                            <option value="investing">Investment opportunities</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="message" style="display: block; margin-bottom: 8px; color: var(--text-primary);">Message</label>
+                        <textarea id="message" rows="5" style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid var(--border); background-color: var(--dark-bg); color: var(--text-primary);"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Longhorn Capital</h3>
+                    <p>Acquiring and growing stable businesses and real estate in Texas through creative financing solutions.</p>
+                    <div class="social-links">
+                        <a href="#"><span>in</span></a>
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>t</span></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#business">Business Acquisitions</a></li>
+                        <li><a href="#realestate">Real Estate</a></li>
+                        <li><a href="#investors">Investors</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Seller Financing Guide</a></li>
+                        <li><a href="#">Exit Planning</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>123 Main Street</li>
+                        <li>Austin, TX 78701</li>
+                        <li>info@longhorncp.com</li>
+                        <li>(512) 555-1234</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Longhorn Capital Partners. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission event
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, you would send this data to your server
+            // For this demo, we'll just show an alert
+            
+            alert('Thank you for your message! We will get back to you shortly.');
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html> 

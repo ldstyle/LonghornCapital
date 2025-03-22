@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longhorn Capital Partners | Investor Portal</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        :root {
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --card-hover: #2a2a2a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --accent: #c5884d;
+            --accent-hover: #d69c61;
+            --border: #333333;
+        }
+        
+        body {
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-hover);
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--darker-bg);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--darker-bg);
+        }
+        
+        .user-name {
+            font-weight: 600;
+        }
+        
+        /* Layout */
+        .main-content {
+            display: flex;
+            margin-top: 70px;
+            flex: 1;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: var(--card-bg);
+            padding: 30px 0;
+            height: calc(100vh - 70px);
+            position: fixed;
+            overflow-y: auto;
+            border-right: 1px solid var(--border);
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-bottom: 5px;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--card-hover);
+            color: var(--text-primary);
+            border-left-color: var(--accent);
+        }
+        
+        .nav-icon {
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* Dashboard Content */
+        .dashboard {
+            flex: 1;
+            padding: 30px;
+            margin-left: 250px;
+        }
+        
+        .welcome-header {
+            margin-bottom: 30px;
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .action-button {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .action-button:hover {
+            background-color: var(--card-hover);
+            transform: translateY(-3px);
+        }
+        
+        .action-icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .widgets-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .widget {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .widget-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .widget-action {
+            font-size: 0.9rem;
+        }
+        
+        /* Portfolio Performance Widget */
+        .performance-chart {
+            height: 200px;
+            background-color: var(--card-hover);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 8%;
+            background-color: var(--accent);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .chart-bar:nth-child(1) { left: 5%; height: 60%; }
+        .chart-bar:nth-child(2) { left: 15%; height: 80%; }
+        .chart-bar:nth-child(3) { left: 25%; height: 65%; }
+        .chart-bar:nth-child(4) { left: 35%; height: 90%; }
+        .chart-bar:nth-child(5) { left: 45%; height: 75%; }
+        .chart-bar:nth-child(6) { left: 55%; height: 85%; }
+        .chart-bar:nth-child(7) { left: 65%; height: 95%; }
+        .chart-bar:nth-child(8) { left: 75%; height: 70%; }
+        .chart-bar:nth-child(9) { left: 85%; height: 100%; }
+        
+        .performance-stats {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Documents Widget */
+        .document-list {
+            list-style: none;
+        }
+        
+        .document-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .document-item:last-child {
+            border-bottom: none;
+        }
+        
+        .document-icon {
+            margin-right: 15px;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .document-info {
+            flex: 1;
+        }
+        
+        .document-title {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .document-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Events Widget */
+        .event-list {
+            list-style: none;
+        }
+        
+        .event-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .event-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .event-date {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .event-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        /* Updates Widget */
+        .update-list {
+            list-style: none;
+        }
+        
+        .update-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .update-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .update-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-hover);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            color: var(--accent);
+        }
+        
+        .update-content {
+            flex: 1;
+        }
+        
+        .update-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .update-time {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 15px 0;
+            text-align: center;
+            margin-top: auto;
+            margin-left: 250px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+                padding: 20px 0;
+            }
+            
+            .nav-link {
+                padding: 15px 0;
+                justify-content: center;
+            }
+            
+            .nav-text {
+                display: none;
+            }
+            
+            .nav-icon {
+                margin-right: 0;
+                font-size: 1.5rem;
+            }
+            
+            .dashboard, footer {
+                margin-left: 70px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .widgets-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+            }
+            
+            .action-button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .user-info {
+                margin-top: 10px;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                padding: 15px;
+                margin-top: 120px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            
+            .nav-menu {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                width: 33.33%;
+            }
+            
+            .nav-link {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
+            
+            .nav-icon {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+            
+            .nav-text {
+                display: block;
+                font-size: 0.8rem;
+            }
+            
+            .dashboard, footer {
+                margin-left: 0;
+                margin-top: 0;
+            }
+            
+            .main-content {
+                flex-direction: column;
+                margin-top: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="main.html" class="logo">LONGHORN CAPITAL</a>
+            <div class="user-info">
+                <div class="user-avatar">JD</div>
+                <div class="user-name">John Doe</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">💼</span>
+                        <span class="nav-text">Portfolio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">📄</span>
+                        <span class="nav-text">Documents</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">📈</span>
+                        <span class="nav-text">Performance</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🗓️</span>
+                        <span class="nav-text">Events</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">💰</span>
+                        <span class="nav-text">Capital Calls</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">💸</span>
+                        <span class="nav-text">Distributions</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="handleLogout()">
+                        <span class="nav-icon">🚪</span>
+                        <span class="nav-text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Dashboard Content -->
+        <main class="dashboard">
+            <div class="welcome-header">
+                <h1>Welcome, John Doe</h1>
+                <p>Here's an overview of your investments with Longhorn Capital Partners</p>
+            </div>
+
+            <div class="quick-actions">
+                <div class="action-button">
+                    <div class="action-icon">📄</div>
+                    <div class="action-text">View Latest Reports</div>
+                </div>
+                <div class="action-button">
+                    <div class="action-icon">📊</div>
+                    <div class="action-text">Portfolio Performance</div>
+                </div>
+                <div class="action-button">
+                    <div class="action-icon">📅</div>
+                    <div class="action-text">Upcoming Events</div>
+                </div>
+                <div class="action-button">
+                    <div class="action-icon">💰</div>
+                    <div class="action-text">Capital Call Status</div>
+                </div>
+            </div>
+
+            <div class="widgets-container">
+                <!-- Portfolio Performance Widget -->
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Portfolio Performance</h3>
+                        <a href="#" class="widget-action">View Details</a>
+                    </div>
+                    <div class="performance-chart">
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                    </div>
+                    <div class="performance-stats">
+                        <div class="stat">
+                            <div class="stat-value">18.7%</div>
+                            <div class="stat-label">IRR</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">2.4x</div>
+                            <div class="stat-label">Multiple</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">$2.1M</div>
+                            <div class="stat-label">Invested</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Documents Widget -->
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Recent Documents</h3>
+                        <a href="#" class="widget-action">View All</a>
+                    </div>
+                    <ul class="document-list">
+                        <li class="document-item">
+                            <div class="document-icon">📊</div>
+                            <div class="document-info">
+                                <div class="document-title">Q2 2025 Performance Report</div>
+                                <div class="document-date">July 15, 2025</div>
+                            </div>
+                        </li>
+                        <li class="document-item">
+                            <div class="document-icon">📝</div>
+                            <div class="document-info">
+                                <div class="document-title">Fund III Subscription Agreement</div>
+                                <div class="document-date">June 28, 2025</div>
+                            </div>
+                        </li>
+                        <li class="document-item">
+                            <div class="document-icon">📄</div>
+                            <div class="document-info">
+                                <div class="document-title">Tax Document K-1</div>
+                                <div class="document-date">April 10, 2025</div>
+                            </div>
+                        </li>
+                        <li class="document-item">
+                            <div class="document-icon">📑</div>
+                            <div class="document-info">
+                                <div class="document-title">Annual Investor Letter</div>
+                                <div class="document-date">January 15, 2025</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Upcoming Events Widget -->
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Upcoming Events</h3>
+                        <a href="#" class="widget-action">View Calendar</a>
+                    </div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="event-date">August 15, 2025 • 2:00 PM CST</div>
+                            <div class="event-title">Q2 Investor Call</div>
+                            <p>Quarterly update on fund performance and new acquisitions</p>
+                        </li>
+                        <li class="event-item">
+                            <div class="event-date">September 8, 2025 • 5:30 PM CST</div>
+                            <div class="event-title">Austin Real Estate Showcase</div>
+                            <p>Tour of new property acquisitions in the Austin market</p>
+                        </li>
+                        <li class="event-item">
+                            <div class="event-date">October 20, 2025 • 12:00 PM CST</div>
+                            <div class="event-title">Investor Lunch & Learn</div>
+                            <p>Special presentation on Texas business acquisition strategy</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Recent Updates Widget -->
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Recent Updates</h3>
+                        <a href="#" class="widget-action">View All</a>
+                    </div>
+                    <ul class="update-list">
+                        <li class="update-item">
+                            <div class="update-icon">🏢</div>
+                            <div class="update-content">
+                                <div class="update-title">New Acquisition: Texas Manufacturing Co.</div>
+                                <p>Longhorn Capital has completed the acquisition of Texas Manufacturing Co., a leading producer of industrial equipment.</p>
+                                <div class="update-time">2 days ago</div>
+                            </div>
+                        </li>
+                        <li class="update-item">
+                            <div class="update-icon">📈</div>
+                            <div class="update-content">
+                                <div class="update-title">Fund II Performance Update</div>
+                                <p>Fund II has exceeded projections with a 22% IRR in the first half of 2025.</p>
+                                <div class="update-time">1 week ago</div>
+                            </div>
+                        </li>
+                        <li class="update-item">
+                            <div class="update-icon">🏗️</div>
+                            <div class="update-content">
+                                <div class="update-title">Dallas Office Complex Development</div>
+                                <p>Construction has begun on our new Dallas office complex project, expected completion in Q2 2026.</p>
+                                <div class="update-time">2 weeks ago</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Longhorn Capital Partners | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function handleLogout() {
+            if (confirm('Are you sure you want to log out?')) {
+                // In a real application, this would handle the logout process
+                alert('You have been logged out successfully.');
+                window.location.href = 'main.html';
+            }
+        }
+    </script>
+</body>
+</html> 
